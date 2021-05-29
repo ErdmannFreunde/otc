@@ -307,3 +307,21 @@ $news-grid-columns--lg: 3;
     }
   }
 }
+
+.news-grid-2 {
+  @include make-row;
+
+  .layout_latest {
+    @include media-query(screen-xs) {
+      @include make-col(12);
+    }
+
+    @include media-query(screen-md) {
+      @include make-col(6);
+    }
+
+    @include media-query(screen-lg) {
+      @include make-col(4);
+    }
+  }
+}

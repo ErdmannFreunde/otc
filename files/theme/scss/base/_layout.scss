@@ -68,8 +68,6 @@
   right: 0;
   color: var(--header-color-text);
   border-bottom: var(--header-border);
-  position: sticky;
-  top: 0;
 
   @include media-query(screen-menu-max) {
     order: -1;
