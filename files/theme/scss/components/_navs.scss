@@ -17,7 +17,7 @@
   --color-navigation-main--active:    var(--color-brand);
   --nav--main__item-padding:          0.5rem;
   --nav--main__item-padding--sm:      0.25rem;
-  --nav--main-font-size:              0.875rem;
+  --nav--main-font-size:              1rem;
   --nav--main-font-weight:            600;
 
   --submenu-background:               var(--color-page-background);
@@ -29,6 +29,11 @@
   --menu-icon-stroke:                 2px;
 
   --nav--sub__item-padding:           var(--base-spacing-unit--sm);
+
+  --nav--contact-font-size: 0.875rem;
+  --nav--contact-font-weight: 600;
+  --nav--contact__item-padding: var(--nav--main__item-padding);
+  --nav--contact-color: var(--color-blue-lighter);
 }
 
 // --------------------------------------------------
@@ -370,4 +375,86 @@
 
 .nav--meta + .nav--meta {
   justify-self: end;
+}
+
+.nav--contact {
+  font-size: var(--nav--contact-font-size);
+  font-weight: var(--nav--contact-font-weight);
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  a,
+  strong {
+    display: block;
+    color: var(--nav--contact-color);
+    padding: var(--nav--contact__item-padding);
+
+    @include media-query(screen-menu) {
+      margin:  var(--nav--contact__item-padding);
+      margin-bottom: 0;
+    }
+  }
+
+  a.phone,
+  a.mail,
+  a.opening_hours {
+    &::before {
+      content: '';
+      width: var(--base-spacing-unit);
+      height: var(--base-spacing-unit);
+      display: inline-block;
+      vertical-align: text-bottom;
+      margin-right: var(--base-spacing-unit--xs);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+  }
+
+  a.phone,
+  a.mail {
+
+    &::before {
+      @include media-query(screen-sm-max) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+
+    span {
+      @include media-query(screen-sm-max) {
+        @include invisible;
+      }
+    }
+  }
+
+  a.phone {
+    &::before {
+      background-image: url('/files/theme/img/icons/phone.svg');
+    }
+  }
+
+  a.mail {
+    &::before {
+      background-image: url('/files/theme/img/icons/mail.svg');
+    }
+  }
+
+  a.opening_hours {
+    @extend %button;
+
+    background: var(--color-blue-alpha);
+    font-weight: 600;
+    color: var(--color-brand-primary);
+    padding-left: var(--base-spacing-unit--sm);
+
+    &::before {
+      background-image: url('/files/theme/img/icons/opening_hours.svg');
+    }
+  }
 }

@@ -18,6 +18,7 @@
   --header-color-background:                     #FFFFFF;
   --header-color-background--inverted:           var(--color-band-dark-background);
   --header-color-text--invert:                   #FFFFFF;
+  --header-border:                               1px solid var(--color-blue-alpha);
 }
 
 // --------------------------------------------------
@@ -45,6 +46,18 @@
   background: var(--wrapper-background);
 }
 
+// #topbar
+[id='topbar'] {
+  @include padding-default(var(--grid__gutter));
+
+  > .inside {
+    @include wrapper-max();
+
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
 // #header
 [id='header'] {
   @include padding-default(var(--grid__gutter));
@@ -54,17 +67,24 @@
   left: 0;
   right: 0;
   color: var(--header-color-text);
+  border-bottom: var(--header-border);
+  position: sticky;
+  top: 0;
+
+  @include media-query(screen-menu-max) {
+    order: -1;
+  }
 
   .inside {
     @include padding-default(0);
 
-    padding-top: var(--base-spacing-unit);
-    padding-bottom: var(--base-spacing-unit);
+    padding-top: 0;
+    padding-bottom: 0;
     display: grid;
     grid-template-columns: auto auto;
-    -webkit-box-align: end;
-        -ms-flex-align: end;
-            align-items: end;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items:  center;
     position: relative;
 
     @supports not (display: grid) {
@@ -150,6 +170,50 @@
 
   a {
     color: inherit;
+  }
+
+  #{headings()} {
+    color: var(--color-band-highlight-text);
+  }
+
+  .card {
+    #{headings()} {
+      color: var(--color-brand-primary);
+    }
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    height: 5rem;
+    background-size: 100% 100%;
+  }
+
+  &::before {
+    top: -5rem;
+    background-image: url('/files/theme/img/background-wave-top.svg');
+  }
+
+  &::after {
+    background-image: url('/files/theme/img/background-wave-bottom.svg');
+    bottom: -5rem;
+  }
+}
+
+.article--highlight-top-only {
+  &::after {
+    display: none;
+  }
+} 
+
+.article--highlight-bottom-only {
+  &::before {
+    display: none;
   }
 }
 
