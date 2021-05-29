@@ -8,46 +8,117 @@
 // COMPONENTS/SLIDER
 // --------------------------------------------------
 
-@import '../../nutshell/scss/components/slider';
-
-// --------------------------------------------------
-
 // CSS-VARIABLES
 :root {
-  --arrow-color:               var(--color-brand);
+  --arrow-color:               var(--color-brand-primary);
   --arrow-size:                2rem;
-  --menu-point-size:           2rem;
-  --menu-point-color:          inherit;
+  --menu-point-size:           0.75rem;
+  --menu-point-color:          var(--color-gray-light);
   --menu-point-color--active:  var(--color-brand);
   --arrow-padding:              var(--base-spacing-unit--sm);
 }
 
 // --------------------------------------------------
 
-// sass-lint:disable no-universal-selectors
-.slider {
-  .slider-wrapper {
-    > * {
-      margin-bottom: 0;
+.ef-skin-default {
+  position: relative;
+
+  .ef-crop {
+    overflow: hidden;
+    transform: translate3d(0px, 0px, 0px); // vendor prefixes
+  }
+
+  .ef-slide {
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    > div {
+      display: flex; // vendor prefixes
+      height: 100%;
     }
   }
 
-  .slider-control a {
-    width: calc(var(--arrow-size) + var(--arrow-padding) * 2);
-    height: calc(var(--arrow-size) + var(--arrow-padding) * 2);
-    overflow: hidden;
-    font-family: var(--base-font-family);
+  .ef-prev,
+  .ef-next {
+      position: absolute;
+      top: 50%;
+      line-height: 2rem;
+      width: 2rem;
+      transform: translateY(-50%);
+      outline: none;
+      text-align: center;
+      font-size: var(--arrow-size);
+      color: var(--arrow-color);
+      border: var(--base-border);
+      border-radius: var(--base-border-radius); 
+      background: var(--color-page-background);
+      opacity: 0;
+      transition: opacity 0.3s;
+
+      &-label {
+        @include invisible;
+      }
+
+      &::after {
+        position: relative;
+        top: -3px;
+      }
   }
 
-  .slider-prev:before {
-    content: '←';
+  .ef-prev {
+    left: 0;
+
+    &::after {
+      content: "\2039";
+    }
   }
 
-  .slider-next:before {
-    content: '→';
+  .ef-next {
+    right: 0;
+
+    &::after {
+      content: "\203a";
+    }
   }
 
-  .slider-menu {
-    font-size: var(--menu-point-size);
+  &:hover {
+    .ef-prev,
+    .ef-next {
+      opacity: 1;
+    }
+  }
+
+  .ef-nav-bullets {
+    @include navigation;
+
+    text-align: center;
+
+    .ef-nav-prev,
+    .ef-nav-next {
+      display: none;
+    }
+
+    .ef-nav-item {
+      display: inline-block;
+      vertical-align: middle;
+
+      a {
+        display: inline-block;
+        width: var(--menu-point-size);
+        height: var(--menu-point-size);
+        overflow: hidden;
+        margin: 0 var(--base-spacing-unit--xs);
+        border-radius: 100%;
+        outline: none;
+        text-align: left;
+        text-indent: -999px;
+        background-color: var(--menu-point-color);
+
+        &.active {
+          background-color: var(--menu-point-color--active);
+        }
+      }
+    }
   }
 }

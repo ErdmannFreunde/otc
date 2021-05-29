@@ -1,0 +1,83 @@
+// *
+// * Erdmann & Freunde
+// * OPTIMIST Contao Theme
+// * erdmann-freunde.de/produkte/contao-themes/optimist/
+// *
+
+//
+// COMPONENTS/CONSENT
+// --------------------------------------------------
+
+// CSS-VARIABLES
+:root {
+    --consent-bg: var(--color-gray-light);
+}
+
+// --------------------------------------------------
+
+[id='hofff-consent-banner'] {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1006;
+    max-height: 100%;
+    overflow-y: auto;
+    background: var(--consent-bg);
+    font-size: var(--base-font-size--xs);
+  
+    > .inside {
+        @include wrapper-max;
+  
+        padding: var(--base-spacing-unit--lg) var(--base-spacing-unit) 0;
+    }
+  
+    .col {
+        @include make-col(12);
+    }
+  }
+  
+  .hofff-consent-root-headline {
+    @extend %_h4;
+  }
+  
+  .hofff-consent-tag {
+    margin-bottom: var(--base-spacing-unit);
+  }
+  
+  .hofff-consent-root-text {
+    margin-bottom: var(--base-spacing-unit);
+  }
+  
+  .hofff-consent-buttons,
+  .hofff-consent-privacy-settings-button {
+    display: inline-flex;
+  }
+  
+  .hofff-consent-button-accept {
+    @extend %button;
+    @extend .btn--primary;
+  }
+  
+  .hofff-consent-button-revoke {
+    @extend %button;
+    @extend .btn--secondary;
+  }
+  
+  .hofff-consent-privacy-settings-toggle,
+  .hofff-consent-button-close  {
+    @extend %button;
+  
+    color: var(--color-brand-primary);
+    outline: none;
+  }
+  
+  .hofff-consent-banner-additional-content {
+    margin-top: var(--base-spacing-unit);
+  
+    .nav--footer-2 {
+        .level_1 {
+            justify-content: center;
+        }
+    }
+  }
